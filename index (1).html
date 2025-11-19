@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robert Aaron Graham | Gen AI Lead & LLM Architect</title>
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-primary-dark: #1e40af;
+            --color-secondary: #64748b;
+            --color-background: #ffffff;
+            --color-surface: #f8fafc;
+            --color-text: #0f172a;
+            --color-text-secondary: #475569;
+            --color-border: #e2e8f0;
+            --color-accent: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--color-background);
+            border-bottom: 1px solid var(--color-border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: 
+                linear-gradient(135deg, rgba(30, 64, 175, 0.9) 0%, rgba(91, 33, 182, 0.9) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231e40af;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%235b21b6;stop-opacity:0.8" /></linearGradient></defs><rect fill="url(%23grad1)" width="1200" height="600"/><circle cx="200" cy="150" r="3" fill="white" opacity="0.6"/><circle cx="400" cy="250" r="2" fill="white" opacity="0.4"/><circle cx="600" cy="100" r="3" fill="white" opacity="0.5"/><circle cx="800" cy="300" r="2" fill="white" opacity="0.7"/><circle cx="1000" cy="200" r="3" fill="white" opacity="0.5"/><circle cx="300" cy="400" r="2" fill="white" opacity="0.6"/><circle cx="700" cy="450" r="3" fill="white" opacity="0.4"/><circle cx="900" cy="150" r="2" fill="white" opacity="0.5"/><path d="M100,500 Q300,450 500,480 T900,460" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/><path d="M200,100 Q400,80 600,110 T1000,90" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none"/><polygon points="150,520 170,540 190,510" fill="rgba(59,130,246,0.4)"/><polygon points="750,80 770,100 790,70" fill="rgba(139,92,246,0.4)"/><rect x="450" y="350" width="40" height="40" fill="rgba(96,165,250,0.3)" transform="rotate(45 470 370)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--color-primary);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--color-text-secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: var(--color-surface);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .skill-item h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--color-text);
+        }
+
+        .skill-item p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+
+        .project-card p {
+            color: var(--color-text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: var(--color-primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--color-primary);
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--color-primary);
+        }
+
+        .timeline-item h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: var(--color-text);
+        }
+
+        .timeline-item .company {
+            font-size: 18px;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .date {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-item li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+            color: var(--color-text-secondary);
+        }
+
+        .timeline-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: var(--color-surface);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-text);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">RAG</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Robert Aaron Graham</h1>
+            <p>Gen AI Lead | LLM Architect | AI Strategy & Engineering Executive</p>
+            <div class="hero-links">
+                <a href="https://github.com/r-aaron-graham" class="btn btn-primary" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/r-aaron-graham" class="btn btn-secondary" target="_blank">LinkedIn</a>
+                <a href="https://huggingface.co/raarongraham" class="btn btn-secondary" target="_blank">Hugging Face</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Strategic Gen AI Leader</h3>
+                    <p>Over 15 years of experience designing and delivering enterprise-grade large language model (LLM) solutions and generative AI platforms.</p>
+                    <p>Expertise in GPT architecture, model fine-tuning, prompt engineering, retrieval-augmented generation (RAG), and embedding-based semantic search.</p>
+                    <p>Skilled in Python automation and building end-to-end MLOps pipelines on Azure and AWS, driving meaningful improvements in AI reliability and operational efficiency.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4>Generative AI & LLMs</h4>
+                        <p>GPT-4, Hugging Face, RAG, Prompt Engineering</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Python & APIs</h4>
+                        <p>FastAPI, Flask, RESTful APIs, Automation</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Vector Databases</h4>
+                        <p>Pinecone, Azure AI Search, ChromaDB</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>MLOps & Cloud</h4>
+                        <p>Azure ML, AWS SageMaker, Kubernetes, Docker</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Enterprise Integration</h4>
+                        <p>Salesforce, ServiceNow, Zoho APIs</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>AI Governance</h4>
+                        <p>COPPA/FERPA, NIST Frameworks, Zero Trust</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" style="background: var(--color-surface);">
+        <div class="container">
+            <h2 class="section-title">Featured Projects & Repositories</h2>
+            
+            <h3 style="font-size: 24px; margin-bottom: 30px; color: var(--color-primary);">Open Source Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Enterprise RAG Platform</h3>
+                    <p>Delivered GPT-4 powered RAG system with vector database integration, advancing AI accuracy and deployment scalability with Python-based MLOps pipelines on Azure ML.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">GPT-4</span>
+                        <span class="tech-tag">Pinecone</span>
+                        <span class="tech-tag">Azure ML</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>HR AI Copilot</h3>
+                    <p>Built generative AI assistant integrating with Workday and Salesforce APIs, transforming HR workflows through automated query resolution.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">GPT-4</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Azure</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>AMIE K-12 Chatbot Frontend</h3>
+                    <p>Social-emotional learning chatbot frontend for K-12 education, built with React and modern JavaScript frameworks. Features responsive design and accessible UI components.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">React</span>
+                    </div>
+                    <a href="https://github.com/r-aaron-graham/Amie-Chatbot-Frontend" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <h3>LinkedIn AI Agent</h3>
+                    <p>AI agent that automates LinkedIn engagement using OpenAI APIs. Features intelligent content generation and automated networking capabilities.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">APIs</span>
+                    </div>
+                    <a href="https://github.com/r-aaron-graham/linkedin-ai-agent" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <h3>CloudNexxus Data Governance</h3>
+                    <p>Led integration modernization and implemented Zero Trust–aligned governance, enhancing data quality across multi-cloud AI service platforms.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">iPaaS</span>
+                        <span class="tech-tag">Zoho Flow</span>
+                        <span class="tech-tag">Zero Trust</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size: 24px; margin: 50px 0 30px; color: var(--color-primary);">Machine Learning & AI Coursework</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>RAG Coursera Labs</h3>
+                    <p>Completed labs focused on Retrieval-Augmented Generation with 100% accuracy. Implementations cover vector databases, embeddings, and semantic search.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">Vector DB</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <a href="https://github.com/r-aaron-graham/RAG-Coursera-Labs" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <h3>Linear Regression Implementation</h3>
+                    <p>From-scratch implementation of linear regression algorithms with gradient descent optimization and feature engineering techniques.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NumPy</span>
+                    </div>
+                    <a href="https://github.com/r-aaron-graham/Linear-Regression" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <h3>Logistic Regression Implementation</h3>
+                    <p>Complete logistic regression implementation for classification tasks, including regularization techniques and performance evaluation metrics.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Classification</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">scikit-learn</span>
+                    </div>
+                    <a href="https://github.com/r-aaron-graham/Logistic-Regression" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <h3>Coursera Labs Collection</h3>
+                    <p>Comprehensive collection of completed Coursera machine learning labs with 100% scores, covering supervised and unsupervised learning techniques.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">ML Algorithms</span>
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">TensorFlow</span>
+                    </div>
+                    <a href="https://github.com/r-aaron-graham/Coursera-Labs" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">View on GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>VP / Head of AI & Platform Engineering</h3>
+                    <div class="company">CloudNexxus Inc</div>
+                    <div class="date">June 2025 – Present | Remote</div>
+                    <ul>
+                        <li>Led design and deployment of GPT-4 based RAG platforms integrating vector databases (Pinecone, Azure AI Search), significantly improving AI response accuracy and trustworthiness</li>
+                        <li>Directed Python-driven MLOps pipeline automation on Azure ML and AWS SageMaker, accelerating model deployment cycles while maintaining enterprise-grade uptime SLAs</li>
+                        <li>Oversaw API integrations with enterprise SaaS platforms including Salesforce, ServiceNow, and Zoho CRM, streamlining AI-driven workflows and reducing data ingestion errors</li>
+                        <li>Built and mentored cross-functional AI engineering teams, specializing in LLM fine-tuning, prompt engineering, and cloud-native deployment</li>
+                        <li>Implemented observability frameworks using OpenTelemetry and Grafana to ensure production model reliability and continuous compliance</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>AI Engineer & ML Consultant</h3>
+                    <div class="company">Outlier AI & Various Clients</div>
+                    <div class="date">January 2021 – August 2025 | Remote</div>
+                    <ul>
+                        <li>Architected end-to-end Gen-AI solutions using Python, OpenAI GPT-4 API, LangChain and Retrieval-Augmented Generation (FAISS, Chroma)</li>
+                        <li>Designed and fine-tuned transformer models with Hugging Face Transformers (PyTorch/TensorFlow), leveraging prompt engineering, RLHF, and dynamic context windows</li>
+                        <li>Built stateless microservices with FastAPI, exposed RESTful APIs, and containerized workloads using Docker for scalable deployment</li>
+                        <li>Applied RLHF, LoRA, PEFT, quantization, and mixed-precision techniques for model optimization and efficient inference</li>
+                        <li>Developed comprehensive data pipelines using pandas, NumPy, and scikit-learn for feature engineering and model training</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Lead AI Engineer (Contract)</h3>
+                    <div class="company">AMIE K-12 AI Project</div>
+                    <div class="date">2021 – 2025 | Boston, MA</div>
+                    <ul>
+                        <li>Architected privacy-compliant, student-safe LLM chatbot utilizing GPT-4 and Azure Cognitive Search for thousands of K-12 students under COPPA/FERPA regulations</li>
+                        <li>Designed vector database and embedding retrieval systems to enhance semantic search and LLM contextual accuracy, managing continuous model refinements using Azure ML</li>
+                        <li>Managed containerized cloud deployments with Docker and Kubernetes, ensuring system scalability and resilience</li>
+                        <li>Implemented comprehensive testing and monitoring frameworks to ensure chatbot safety and educational appropriateness</li>
+                        <li>Collaborated with educators and school administrators to align AI capabilities with pedagogical needs and compliance requirements</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Senior Automation Lead & UAT Specialist</h3>
+                    <div class="company">Frontier Communications</div>
+                    <div class="date">April 2010 – November 2023 | West Virginia</div>
+                    <ul>
+                        <li>Developed Python automation tools enhancing telecom workflows for millions of users, delivering measurable improvements in testing cycle efficiency</li>
+                        <li>Led data reconciliation and API-driven automation support during multi-cloud migrations, ensuring operational continuity and data fidelity</li>
+                        <li>Spearheaded identity management automation to optimize joiner-mover-leaver processes and streamline enterprise operations</li>
+                        <li>Coordinated cross-functional teams to implement quality assurance best practices and automated testing frameworks</li>
+                        <li>Received multiple awards including Rave Award for exceptional customer service and technical problem-solving</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="articles" style="background: var(--color-background);">
+        <div class="container">
+            <h2 class="section-title">Technical Writing & Insights</h2>
+            <p style="text-align: center; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 40px;">Sharing knowledge on AI/ML engineering, LLM applications, and emerging technologies through technical articles and thought leadership.</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Building Human-Centered AI Systems</h3>
+                    <p>Exploring the intersection of empathy, ethics, and artificial intelligence in creating AI systems that prioritize human needs and dignity.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Responsible AI</span>
+                        <span class="tech-tag">Ethics</span>
+                        <span class="tech-tag">Human-Centered Design</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">Read on LinkedIn →</a>
+                </div>
+                <div class="project-card">
+                    <h3>RAG Systems in Production</h3>
+                    <p>Technical deep-dive into implementing retrieval-augmented generation at scale, covering vector databases, embeddings, and prompt engineering best practices.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">LLM</span>
+                        <span class="tech-tag">Production AI</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">Read on LinkedIn →</a>
+                </div>
+                <div class="project-card">
+                    <h3>MLOps Best Practices for Enterprise</h3>
+                    <p>Lessons learned from deploying machine learning systems in production environments, focusing on reliability, monitoring, and continuous improvement.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">MLOps</span>
+                        <span class="tech-tag">DevOps</span>
+                        <span class="tech-tag">Cloud Architecture</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank" style="color: var(--color-primary); text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">Read on LinkedIn →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background: var(--color-surface);">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>Interested in collaborating on Gen AI projects or discussing opportunities? I'd love to hear from you.</p>
+                <div class="contact-links">
+                    <a href="mailto:agraham@cloudnexxus.com" class="contact-link">
+                        📧 Email
+                    </a>
+                    <a href="https://linkedin.com/in/r-aaron-graham" class="contact-link" target="_blank">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com/r-aaron-graham" class="contact-link" target="_blank">
+                        💻 GitHub
+                    </a>
+                    <a href="https://huggingface.co/raarongraham" class="contact-link" target="_blank">
+                        🤗 Hugging Face
+                    </a>
+                    <a href="tel:+13049109804" class="contact-link">
+                        📱 (304) 910-9804
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Robert Aaron Graham. All rights reserved.</p>
+            <p>Princeton, WV | Remote</p>
+        </div>
+    </footer>
+</body>
+</html>
