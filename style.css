@@ -1,29 +1,49 @@
-/* ================================
-   GLOBAL RESET & BASE STYLES
-================================ */
+/* =========================================
+   GLOBAL RESETS & BROWSER COMPATIBILITY
+   ========================================= */
 
-* {
+html {
+    -webkit-text-size-adjust: 100%; /* Prevent iOS Safari auto-zoom */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent; /* Mobile tap highlight removal */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: #333;
     background: #f8f9fa;
 }
 
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* ================================
+/* =========================================
    HERO SECTION
-================================ */
+   ========================================= */
 
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -37,8 +57,6 @@ body {
 .hero-bg {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
     opacity: 0.15;
     z-index: 0;
 }
@@ -61,7 +79,7 @@ body {
     animation: fadeInUp 0.8s ease 0.2s backwards;
 }
 
-/* SOCIAL BUTTONS */
+/* Social Buttons */
 .social-links {
     display: flex;
     gap: 20px;
@@ -86,9 +104,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* ================================
+/* =========================================
    SECTION BASE
-================================ */
+   ========================================= */
 
 section {
     padding: 80px 20px;
@@ -101,9 +119,9 @@ section h2 {
     color: #2d3748;
 }
 
-/* ================================
+/* =========================================
    ABOUT SECTION
-================================ */
+   ========================================= */
 
 .about-content {
     max-width: 800px;
@@ -139,9 +157,9 @@ section h2 {
     font-size: 1.2rem;
 }
 
-/* ================================
+/* =========================================
    PROJECTS SECTION
-================================ */
+   ========================================= */
 
 .projects-container {
     display: grid;
@@ -191,8 +209,8 @@ section h2 {
 .project-link {
     display: inline-block;
     color: #667eea;
-    text-decoration: none;
     font-weight: 600;
+    text-decoration: none;
     transition: color 0.3s ease;
 }
 
@@ -200,9 +218,9 @@ section h2 {
     color: #764ba2;
 }
 
-/* ================================
+/* =========================================
    EXPERIENCE SECTION
-================================ */
+   ========================================= */
 
 .experience-timeline {
     max-width: 900px;
@@ -253,9 +271,9 @@ section h2 {
     font-weight: bold;
 }
 
-/* ================================
+/* =========================================
    ARTICLES SECTION
-================================ */
+   ========================================= */
 
 .articles-grid {
     display: grid;
@@ -286,9 +304,9 @@ section h2 {
     color: #4a5568;
 }
 
-/* ================================
+/* =========================================
    CONTACT SECTION
-================================ */
+   ========================================= */
 
 .contact {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -318,9 +336,9 @@ section h2 {
     border-bottom-color: white;
 }
 
-/* ================================
+/* =========================================
    ANIMATIONS
-================================ */
+   ========================================= */
 
 @keyframes fadeInUp {
     from {
@@ -333,12 +351,25 @@ section h2 {
     }
 }
 
-/* ================================
-   RESPONSIVE DESIGN
-================================ */
+/* =========================================
+   RESPONSIVE DESIGN (TABLETS)
+   ========================================= */
+
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero .subtitle {
+        font-size: 1.3rem;
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (MOBILE)
+   ========================================= */
 
 @media (max-width: 768px) {
-
     .hero h1 {
         font-size: 2rem;
     }
